@@ -14,6 +14,10 @@ Pythran Open Source Community
 .. je ne sais pas quoi mettre ici, CNRS ? Ou alors on joue la carte de
    l’OpenSource et on met un truc genre « Pythran Open Source Community »
 
+.. Ok pour "Pythran Open Source Community", mais ne faudrait il pas inclure
+   d'autres personnes? Peut être mettre ailleurs une liste des contributeurs
+   de Pythran ?
+
 
 CURRICULUM VITAE
 ----------------
@@ -58,7 +62,8 @@ Serge Guelton holds a compiler engineer degree from Télécom Bretagne, with a
 specialization in Computer Science, and a PhD in Computer Science with a focus
 on compilation and heterogeneous computing.
 
-
+Pierre Augier holds a Master degree in Physics from ENS Lyon and a PhD in
+stratified turbulence carried out at LadHyX (Ecole Polytechnique).
 
 Professional curriculum
 ***********************
@@ -76,6 +81,31 @@ parallel to his professional career, Serge Guelton has been developing the
 Pythran project as an open source personal project, building a user community,
 publishing academic and technical papers and presenting his project in
 international conferences.
+
+After his PhD, Pierre Augier worked as a post-doctoral researcher for two
+projects at the department of mechanics of KTH (Stockholm, Sweden) and at the
+Department of Applied Mathematics and Theoretical Physics (Cambridge
+University, UK), respectively. He started to work more and more on developing
+complex scientific applications and to study how this can be done efficiently
+with open-source methods and the Python programming language.
+
+In 2014, in the framework of his research as CNRS researcher, he created the
+`FluidDyn project <https://fluiddyn.readthedocs.io>`_ (Augier et al. 2019),
+which goal is to foster open-science and open-source in fluid dynamics. Today,
+FluidDyn is mainly a set of Python packages forming a framework to study fluid
+dynamics with different methods, in particular laboratory experiments (package
+fluidlab), simulations (packages fluidfft, fluidsim and fluidfoam) and data
+processing (package fluidimage). Python and its scientific ecosystem is a great
+advantage for a project like FluidDyn, however, one needs good tools to easily
+accelerate Python / Numpy code. Pythran produces very efficient binaries
+without the need to complicate the code and therefore to compromise simplicity,
+readability and portability. Therefore, Pythran has become the main Python /
+Numpy accelerator used in FluidDyn and Pierre Augier started to contribute to
+the project. Finally, in 2018, Pierre Augier created a side project called
+`Transonic <https://bitbucket.org/fluiddyn/transonic>`_ which makes Pythran
+even easier to use and overcomes some of Pythran's limitations (for example no
+just-in-time compilation and no acceleration of methods of classes).
+
 
 Skills
 ******
