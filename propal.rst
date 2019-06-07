@@ -106,7 +106,6 @@ the project. Finally, in 2018, Pierre Augier created a side project called
 even easier to use and overcomes some of Pythran's limitations (for example no
 just-in-time compilation and no acceleration of methods of classes).
 
-
 Skills
 ******
 
@@ -154,25 +153,38 @@ PUBLICATION LIST
     en ajoutant l’année en fin de dernière ligne, et j’ai mis en gras la
     publication la plus importante
 
-Pythran: Crossing the Python Frontier
-G Serge
-Computing in Science & Engineering 20 (2), 83, 2018
+- Pythran: Crossing the Python Frontier
+  G Serge
+  Computing in Science & Engineering 20 (2), 83, 2018
 
-Pythran: Enabling static optimization of scientific python programs
-S Guelton, P Brunet, M Amini, A Merlini, X Corbillon, A Raynaud
-Computational Science & Discovery 8 (1), 014001, 2015
+- Pythran: Enabling static optimization of scientific python programs
+  S Guelton, P Brunet, M Amini, A Merlini, X Corbillon, A Raynaud
+  Computational Science & Discovery 8 (1), 014001, 2015
 
-Compiling Python modules to native parallel modules using Pythran and OpenMP annotations
-S Guelton, P Brunet, M Amini
-Python for High Performance and Scientific Computing 2013
+- Compiling Python modules to native parallel modules using Pythran and OpenMP annotations
+  S Guelton, P Brunet, M Amini
+  Python for High Performance and Scientific Computing 2013
 
-PENCIL: Towards a platform-neutral compute intermediate language for DSLs
-R Baghdadi, A Cohen, S Guelton, S Verdoolaege, J Inoue, T Grosser, ...
-arXiv preprint arXiv:1302.5586, 2013
+- PENCIL: Towards a platform-neutral compute intermediate language for DSLs
+  R Baghdadi, A Cohen, S Guelton, S Verdoolaege, J Inoue, T Grosser, ...
+  arXiv preprint arXiv:1302.5586, 2013
 
-Par4all: From convex array regions to heterogeneous computing
-M Amini, B Creusillet, S Even, R Keryell, O Goubier, S Guelton, ...
-IMPACT 2012: Second International Workshop on Polyhedral Compilation, 2012
+- Par4all: From convex array regions to heterogeneous computing
+  M Amini, B Creusillet, S Even, R Keryell, O Goubier, S Guelton, ...
+  IMPACT 2012: Second International Workshop on Polyhedral Compilation, 2012
+
+- FluidDyn: A python open-source framework for research and teaching in fluid
+  dynamics by simulations, experiments and data processing.
+  P Augier, AV Mohanan, C Bonamy - Journal of Open Research Software, 7(1), 2019.
+  doi:10.5334/jors.237.
+
+- FluidFFT: Common API (C++ and Python) for Fast Fourier Transform HPC Libraries.
+  Mohanan, A. V., Bonamy, C., & Augier, P. - Journal of Open Research Software, 7(1), 2019.
+  doi:10.5334/jors.238.
+
+- FluidSim: modular, object-oriented Python package for high-performance CFD simulations.
+  Mohanan, A. V., Bonamy, C., & Augier, P. - Journal of Open Research Software, 7(1), 2019.
+  doi:10.5334/jors.239.
 
 
 "Pythran: Enabling static optimization of scientific python programs" is the
@@ -213,7 +225,45 @@ Similar work in the community
 
 .. *Explain here what makes your work stand out from previous research*
 
-(...)
+In the Python ecosystem, Pythran can be compared to projects like Cython and
+Numba. These two tools are more popular that Pythran. However, Pythran has very
+interesting technical advantages.
+
+Cython is an overset of the Python language to write C extensions without
+writing C code. It is very popular, widely used and battle tested. Cython is
+used in some modules of the standard library (in CPython) and in most of the
+main packages of the scientific Python ecosystem (for example Scipy,
+scikit-learn, scikit-image, ...). It is very versatil and powerful. However,
+writing efficient Cython code requires to master both Python and C, and to be
+able to use part of the Python C API. Note that Pythran can now be used from
+Cython to speed-up Numpy code. In most cases, similar performances can be
+achieved only with Pythran with much simpler, readable and elegant Python code.
+With Pythran, the code is therefore faster to write and easier to maintain.
+Moreover, more developers are able to work on it, which is very important for
+open-source scientific projets.
+
+Numba is a Python package to perform just-in-time compilation of functions
+using a subset of Python / Numpy. Its main advantage is to target CPUs and
+GPUs. However, for computations on CPU, it is usually less efficient that
+Pythran and the amount of Python / Numpy code supported is smaller. In
+particular, Numba does not support well broadcasting and most of algorithms
+have to be rewritten with loops, which in many cases decreases the readability
+and the generality of the code. Note that with Transonic, Pythran can also be
+used as a method-based just-in-time compiler whereas it is not possible to
+distribute compiled binaries with Numba. Moreover, accelerating functions and
+methods with Pythran/Transonic is as simple as with Numba (with a very similar
+API).
+
+Python and its scientific ecosystem (including Pythran) can also be compared to
+other programming languages, for example Matlab, C++ and Julia. Being both
+open-source and dynamic, Julia may be the closest alternative. Using Pythran,
+scientific Python can reach the same level of performance than with Julia
+(sometimes faster and with cleaner codes, with less loops and macros). The main
+advantages of Julia compared to Python with Pythran are the good efficiency of
+user-defined types and the possibility to use GPUs. The main advantages of
+Python with Pythran compared to Julia are (i) the possibility to distribute
+compiled binaries and (ii) the better integration with the scientific Python
+ecosystem.
 
 Validation and Tests
 ********************
