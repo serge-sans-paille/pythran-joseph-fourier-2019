@@ -210,6 +210,41 @@ Project/Research Description
    Joseph Fourier Prize (...)
    [1,125 characters maximum]*
 
+**Pythran** is an ahead of time compiler for a subset of the Python language,
+with a focus on scientific computing. It takes a Python module annotated with a
+few interface description and turns it into a native Python module with the
+same interface, but faster. It is meant to efficiently compile scientific
+programs, and takes advantage of multi-cores and SIMD instruction units.
+
+Pythran compilation involves three steps: (i) optimization of high-level
+constructs in the Python / Numpy code, (ii) transpilation to optimized C++ code
+that does not depend on a Python interpreter, (iii) compilation of the C++
+code. As a result, the resulting Python extensions are usually very efficient,
+i.e. as fast as optimized C++ or Fortran.
+
+Since Pythran extensions do not use the Python interpreter, they do not suffer
+from issues related to the Python Global Interpreter Lock (GIL) for parallel
+computing with threads. Moreover, with Pythran, OpenMP directives can be used
+in Python codes as in standard compiled languages.
+
+Since Pythran produced C++ code which does not use the Python interpreter, it
+can be used as any pure C++ code, for example included in a C++ project or even
+compiled to webassembly! Thus, Python, Numpy and Pythran form together a very
+interesting framework to prototype HPC C++ codes.
+
+However, from the point of view of Python developers, this "pure-C++" choice
+has also disadvantages. All functions in the standard library or in Numpy have
+to the reimplemented in the Pythran C++ library. It means that external
+packages like for example h5py or mpi4py cannot be used in Pythran modules,
+which implies that one has to put numerical kernels in dedicated Pythran
+modules. It increases the cost to use Pythran on existing Python codes and make
+Pythran more complicated to use than Numba, another Pythran compiler.
+
+**Transonic** is a pure Python package to easily accelerate modern Python-Numpy
+code with Pythran, with a simple and pythonic API inspired by the Numba API. It
+becomes very simple to accelerate any numerical kernels (blocks of code,
+functions or methods of classes) just by adding few lines of Python.
+
 Contribution of candidate (Or team)
 ***********************************
 
@@ -218,7 +253,33 @@ Contribution of candidate (Or team)
 Originality and difficulty
 **************************
 
-(...)
+Python and its scientific ecosystem is widely used in the scientific community.
+Python is suited to communicate ideas between scientists / developers, and to
+quickly prototype scientific software. However, Python and its main
+interpreters have not been designed for scientific HPC. This framework is not
+adapted to develop numerical kernels. Thus, the standard practice is to develop
+these kernels in compiled languages (C, Fortran, C++), sometimes through the
+use of Cython. Python is mainly used in the scientific community as a very nice
+glue language.
+
+Due to its high level of dynamisms and introspection, it is notoriously
+difficult to compile full Python code. Pypy, the alternative and faster
+interpreter is not able to accelerate Python code using extensions consuming
+the CPython C API, so it cannot accelerate Numpy code!
+
+It is therefore an interesting choice for a Python compiler like Pythran to
+target only a subset of the Python language, with a focus on scientific
+computing. In most cases, it is not difficult (and a good practice) to split a
+HPC Python code into a set of numerical kernels (without crazy Python features
+and exotic libraries) and the rest of the code, where all Python features and
+libraries can be used. Since the expensive numerical computations are mainly in
+the numerical kernels, we can reach very good level of efficiency only by
+compiling these numerical kernels.
+
+Ahead-of-time compilation of the "simple" Python / Numpy codes of the numerical
+kernels is then possible. Having to treat very high-level codes can even be a
+opportunity for a compiler, and Pythran is clever to understand high-level
+constructs and to apply complex optimizations on them.
 
 Similar work in the community
 *****************************
@@ -226,21 +287,20 @@ Similar work in the community
 .. *Explain here what makes your work stand out from previous research*
 
 In the Python ecosystem, Pythran can be compared to projects like Cython and
-Numba. These two tools are more popular that Pythran. However, Pythran has very
-interesting technical advantages.
+Numba. These two tools are clearly more popular that Pythran. However, Pythran
+has very interesting technical advantages.
 
 Cython is an overset of the Python language to write C extensions without
-writing C code. It is very popular, widely used and battle tested. Cython is
-used in some modules of the standard library (in CPython) and in most of the
-main packages of the scientific Python ecosystem (for example Scipy,
-scikit-learn, scikit-image, ...). It is very versatil and powerful. However,
-writing efficient Cython code requires to master both Python and C, and to be
-able to use part of the Python C API. Note that Pythran can now be used from
-Cython to speed-up Numpy code. In most cases, similar performances can be
-achieved only with Pythran with much simpler, readable and elegant Python code.
-With Pythran, the code is therefore faster to write and easier to maintain.
-Moreover, more developers are able to work on it, which is very important for
-open-source scientific projets.
+writing C code. It is very mature, widely used and battle tested. Cython is
+used in most of the main packages of the scientific Python ecosystem (for
+example Scipy, scikit-learn, scikit-image, ...). It is very versatil and
+powerful. However, writing efficient Cython code requires to master both Python
+and C, and to be able to use part of the CPython C API. Note that Pythran can
+now be used from Cython to speed-up Numpy code. In most cases, similar
+performances can be achieved only with Pythran with much simpler, readable and
+elegant Python code. With Pythran, the code is therefore faster to write and
+easier to maintain. Moreover, more developers are able to work on it, which is
+very important for open-source scientific projets.
 
 Numba is a Python package to perform just-in-time compilation of functions
 using a subset of Python / Numpy. Its main advantage is to target CPUs and
@@ -303,9 +363,9 @@ Next steps
   It would therefore be interesting for the scientific Python community to
   break this vicious circle: Pythran does not receive sufficient investments
   (in terms of money and development) because it is not yet used in very
-  popular projects. And it cannot be used in these big projects because the
+  popular projects. And it cannot be used in these big projects because of the
   lack of investments. We hope that this vicious circle will be overcome when
-  one or two big projects will adopt Pythran and some work is being done in
+  one or two big projects will adopt Pythran. Some work is being done in
   this direction with Scikit-image [#]_.
 
 .. [#] See https://mail.python.org/pipermail/scipy-dev/2018-May/022837.html.
