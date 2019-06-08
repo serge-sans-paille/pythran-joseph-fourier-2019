@@ -322,6 +322,10 @@ Next steps
   to write HPC Python codes able to work with different types of arrays (Numpy
   arrays, Dask arrays, arrays on GPU, etc.).
 
+- A long-term task would be to use Pythran to accelerate Python/Numpy code with
+  GPUs. Since Pythran supports OpenMP, a promissing method would be to use recent
+  OpenMP directives targetting GPUs.
+
 Further information
 *******************
 
