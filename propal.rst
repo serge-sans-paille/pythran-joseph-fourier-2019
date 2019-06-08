@@ -252,7 +252,9 @@ and the generality of the code. Note that with Transonic, Pythran can also be
 used as a method-based just-in-time compiler whereas it is not possible to
 distribute compiled binaries with Numba. Moreover, accelerating functions and
 methods with Pythran/Transonic is as simple as with Numba (with a very similar
-API).
+API). Another advantage of Pythran over Numba is to produce C++ which does not
+depend on a Python interpreter, and which can therefore be used directly in a
+pure C++ code.
 
 Python and its scientific ecosystem (including Pythran) can also be compared to
 other programming languages, for example Matlab, C++ and Julia. Being both
@@ -292,6 +294,33 @@ Next steps
 .. *Describe here the next steps for your research/project.
    [1,125 characters maximum]*
 
+- Usage of Pythran in popular Python packages like scikit-image, scikit-learn
+  and even Scipy. After an interesting discussion on the Scipy-dev mailing list,
+  the conclusions was that there would be many advantages to use Pythran in Scipy
+  and that the main blocker is that Pythran almost totally relies on
+  Serge Guelton [#]_.
+
+  It would therefore be interesting for the scientific Python community to
+  break this vicious circle: Pythran does not receive sufficient investments
+  (in terms of money and development) because it is not yet used in very
+  popular projects. And it cannot be used in these big projects because the
+  lack of investments. We hope that this vicious circle will be overcome when
+  one or two big projects will adopt Pythran and some work is being done in
+  this direction with Scikit-image [#]_.
+
+.. [#] See https://mail.python.org/pipermail/scipy-dev/2018-May/022837.html.
+.. [#] See https://github.com/scikit-image/scikit-image/issues/2956.
+
+- A possible Pythran improvement would be to be able to define and use in the
+  numerical kernels simple user-defined types (`Python dataclass
+  <https://docs.python.org/3/library/dataclasses.html>`_ equivalent to C++
+  structures).
+
+- We are working on Transonic to be able to use with the same API different
+  accelerators (Pythran, Numba, Cython, Cupy, ...). This would be very convenient
+  for benchmarking and to compare the different accelerators. It would also help
+  to write HPC Python codes able to work with different types of arrays (Numpy
+  arrays, Dask arrays, arrays on GPU, etc.).
 
 Further information
 *******************

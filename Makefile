@@ -1,5 +1,5 @@
 
-all: propal.odt
+all: propal.rst
 	pandoc propal.rst -o propal.odt
 
 clean:
