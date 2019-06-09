@@ -444,22 +444,44 @@ WORK IMPACT
    It could be publications, software, events, and conferences. Explain why you selected these.
    [2,250 characters maximum]*
 
-        4.1 Item 1
+Item 1
+######
 
-(...)
+Pythran is being used as a core component of the development toolchain at
+UAudio, for fast prototyping of audio filters. It is a double achievement as it
+is both used by a major actor of the audio industry, and one of their team
+engineer, Jean Laroche, actively contributes back to the project, through bug
+reports and code contributions. This emphasize the interest of the Open Source
+Model that enables widespread usage and fosters collaboration.
 
-        4.2 Item 2
+Item 2
+######
 
-(...)
+Although a paper originally published as a follow-up to the SciPy conference in
+2015, the paper *Pythran: Enabling static optimization of scientific python
+programs* has been cited 18 times since then, which demonstrates that a tool
+with firm academic grounds can be accepted and recognized by the academic
+world.
 
-        4.3 Item 3
 
-(...)
+Item 3
+######
 
-        4.4 Item 4
+David Menéndez Hurtado, member of the department of Biochemistry and
+Biophysics, Stockholm University, has been using Pythran as a core component of
+the `pconsc3 <http://pconsc3.bioinfo.se/>`__ tool. It leads to interesting bug
+reports, code contributions and the paper *Predicting accurate contacts in
+thousands of Pfam domain families using PconsC3, M Michel, MJ Skwark, D
+Menéndez Hurtado, M Ekeberg, A Elofsson, Bioinformatics 33 (18), 2859-2866*.
 
-(...)
+Item 4
+######
 
-        4.5 Item 5
+Pythran is an optional component of the `cython <https://cython.org/>`_
+compiler, the most widely used Python-to-C compiler. This is an important
+recognition of the potential of the Pythran compiler.
+
+Item 5
+######
 
 (...)
