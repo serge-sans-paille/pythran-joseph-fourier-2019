@@ -129,7 +129,7 @@ Further information
 The activities of Serge Guelton around the Pythran project have led to a rich
 set of interactions with educational, academic and industrial world. He has
 mentored several third-years student of Télécom Bretagne on various
-compilation-related aspects of Pythran (Alan Raynaud, Adrien Merlini et Éliott
+compilation-related aspects of Pythran (Alan Raynaud, Adrien Merlini and Éliott
 Coyac). He has been presenting his ideas at Super Computing Workshops, at the
 Scipy Conference and in the regular French Compilation meetings. The result of
 his work on Pythran is now regularly used worldwide by both engineers, PhD
@@ -140,7 +140,7 @@ computational pipelines, at UAudio to accelerate the prototype-to-product
 pipeline (see
 http://serge-sans-paille.github.io/pythran-stories/pythran-as-a-bridge-between-fast-prototyping-and-code-deployment.html),
 an in financial firms to speedup simulation. It is a component of the
-https://opendreamkit.org/ european project, in the performance WP.
+https://opendreamkit.org/ European project, in the performance work package.
 
 PUBLICATION LIST
 ----------------
@@ -187,7 +187,7 @@ PUBLICATION LIST
   doi:10.5334/jors.239.
 
 
-"Pythran: Enabling static optimization of scientific python programs" is the
+**Pythran: Enabling static optimization of scientific python programs** is the
 key publication around the Pythran compiler. It introduces all the core
 concepts for a successful compiler for numerical Python: optimization of
 high-level constructs, expression fusion, OpenMP support for Python, SIMD
@@ -216,20 +216,22 @@ few interface description and turns it into a native Python module with the
 same interface, but faster. It is meant to efficiently compile scientific
 programs, and takes advantage of multi-cores and SIMD instruction units.
 
-Pythran compilation involves three steps: (i) optimization of high-level
-constructs in the Python / Numpy code, (ii) transpilation to optimized C++ code
-that does not depend on a Python interpreter, (iii) compilation of the C++
-code. As a result, the resulting Python extensions are usually very efficient,
-i.e. as fast as optimized C++ or Fortran.
+Pythran compilation involves three steps:
+
+1. Optimization of high-level constructs in the Python / Numpy code,
+2. Transpilation to optimized C++ code that does not depend on a Python interpreter
+3. Compilation of the C++ code.
+
+As a result, the resulting Python extensions are usually very efficient, i.e. as fast as optimized C++ or Fortran.
 
 Since Pythran extensions do not use the Python interpreter, they do not suffer
 from issues related to the Python Global Interpreter Lock (GIL) for parallel
 computing with threads. Moreover, with Pythran, OpenMP directives can be used
 in Python codes as in standard compiled languages.
 
-Since Pythran produced C++ code which does not use the Python interpreter, it
+Since Pythran produces C++ code which does not use the Python interpreter, it
 can be used as any pure C++ code, for example included in a C++ project or even
-compiled to webassembly! Thus, Python, Numpy and Pythran form together a very
+compiled to WebAssembly. Thus, Python, Numpy and Pythran form together a very
 interesting framework to prototype HPC C++ codes.
 
 However, from the point of view of Python developers, this "pure-C++" choice
@@ -248,7 +250,15 @@ functions or methods of classes) just by adding few lines of Python.
 Contribution of candidate (Or team)
 ***********************************
 
-(...)
+Serge Guelton is the core developer of the Pythran project. As such, he contributed to all the aspects of the compiler:
+
+1. Original design of the compiler infrastructure, with an high-level compilation stage and a low-level compilation stage, and a focus on backward-compatibility with Python,
+2. Design and implementation of several compiler optimizations specific to the Python language, including inter-procedural ones
+3. Efficient implementation of a large part of the Numpy API in C++, combined with data structure that captures the complexity of Numpy's multi-dimensional arrays
+4. Packaging and diffusion of the Pythran compiler through academic conference, engineering conference and blog posts.
+5. Continuous testing of API and performance regression (see https://serge-sans-paille.github.io/pythran-asv/)
+
+TODO: Pierre Augier
 
 Originality and difficulty
 **************************
@@ -265,7 +275,7 @@ glue language.
 Due to its high level of dynamisms and introspection, it is notoriously
 difficult to compile full Python code. Pypy, the alternative and faster
 interpreter is not able to accelerate Python code using extensions consuming
-the CPython C API, so it cannot accelerate Numpy code!
+the CPython C API, so it cannot accelerate Numpy code.
 
 It is therefore an interesting choice for a Python compiler like Pythran to
 target only a subset of the Python language, with a focus on scientific
@@ -276,7 +286,7 @@ libraries can be used. Since the expensive numerical computations are mainly in
 the numerical kernels, we can reach very good level of efficiency only by
 compiling these numerical kernels.
 
-Ahead-of-time compilation of the "simple" Python / Numpy codes of the numerical
+Ahead-of-time compilation of the *simple* Python / Numpy codes of the numerical
 kernels is then possible. Having to treat very high-level codes can even be a
 opportunity for a compiler, and Pythran is clever to understand high-level
 constructs and to apply complex optimizations on them.
@@ -290,17 +300,17 @@ In the Python ecosystem, Pythran can be compared to projects like Cython and
 Numba. These two tools are clearly more popular that Pythran. However, Pythran
 has very interesting technical advantages.
 
-Cython is an overset of the Python language to write C extensions without
-writing C code. It is very mature, widely used and battle tested. Cython is
-used in most of the main packages of the scientific Python ecosystem (for
-example Scipy, scikit-learn, scikit-image, ...). It is very versatil and
-powerful. However, writing efficient Cython code requires to master both Python
-and C, and to be able to use part of the CPython C API. Note that Pythran can
-now be used from Cython to speed-up Numpy code. In most cases, similar
-performances can be achieved only with Pythran with much simpler, readable and
-elegant Python code. With Pythran, the code is therefore faster to write and
-easier to maintain. Moreover, more developers are able to work on it, which is
-very important for open-source scientific projets.
+Cython is a superset of the Python language to write C extensions without
+writing C code. It is very mature, widely used and stable. Cython is used in
+most of the main packages of the scientific Python ecosystem (for example
+Scipy, scikit-learn, scikit-image, ...). It is very versatile and powerful.
+However, writing efficient Cython code requires to master both Python, C, the
+actual Cython dialect, and part of the CPython C API. Note that Pythran can now
+be used from Cython to speed-up Numpy code. In most cases, similar performances
+can be achieved only with Pythran with much simpler, readable and elegant
+Python-only code. With Pythran, the code is therefore faster to write and easier to
+maintain. Moreover, more developers are able to work on it, which is very
+important for open-source scientific projects.
 
 Numba is a Python package to perform just-in-time compilation of functions
 using a subset of Python / Numpy. Its main advantage is to target CPUs and
@@ -334,14 +344,49 @@ Validation and Tests
    could be either experiments on large-sized cluster or validation from a wider
    community.*
 
-(...)
+The Pythran stack is composed of a compiler infrastructure with more than
+twenty compiler passes, and a C++ runtime which provides a native
+implementation of a large subset of Numpy and Python libraries. Validation of
+the project is done at several layers:
+
+1. From a functionality point of view, Pythran's testbed consist in more than
+   two thousands code snippets for which the testing infrastructure ensures the
+   equality between the output of the interpreted code and of the compiled
+   code. This is a very strong requirement: for the same input (value and
+   type), interpreted and compiled code must have the same output (value and
+   type).
+
+2. From a deployment point of view, these tests are run using Continuous
+   Integration tools on several systems (Linux, Windows and OSX), for several
+   Python versions (Python 2 and Python 3), using different compilers (GCC,
+   Clang, MVSC) and different compilation flags (with or without OpenMP, with
+   or Without SIMD instructions).
+
+3. From a user base point of view, Pythran bug tracker is very active and
+   receives bug reports from academical and industrial users.
 
 Direct and potential impacts
 ****************************
 
 .. *Describe here the direct and medium-term impacts of your work/research*
 
-(...)
+Pythran is used by PhD students who can write Python code but don't have the
+time to invest in speeding up their simulations. Pythran provides them with a
+tool that produces native code, potentially using SIMD instructions and
+multiple cores.
+
+Pythran is used by academics as a support for research projects where it
+provides a better development time/code speed trade-off than compiled language
+like C++ or Fortran. For that use case, the *de facto* compatibility of Pythran
+with the Python scientific stack (Jupyter notebook, Matplotlib visualization,
+...) is a definite plus.
+
+Pythran is used in the industry because it accelerates the development cycle
+without sacrificing performance. Thanks to its Python compatibility, it also
+proposes an interesting alternative to the *prototype in Python, reimplement in
+a natively compiled language* approach. The ability to generate Python-free
+code has proved to be relevant to build general purpose native libraries out of
+Python specifications.
 
 Deployment and Community Adoption
 *********************************
@@ -383,8 +428,8 @@ Next steps
   arrays, Dask arrays, arrays on GPU, etc.).
 
 - A long-term task would be to use Pythran to accelerate Python/Numpy code with
-  GPUs. Since Pythran supports OpenMP, a promissing method would be to use recent
-  OpenMP directives targetting GPUs.
+  GPUs. Since Pythran supports OpenMP, a promising method would be to use recent
+  OpenMP directives targeting GPUs.
 
 Further information
 *******************
