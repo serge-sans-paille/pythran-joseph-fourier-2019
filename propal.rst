@@ -417,7 +417,16 @@ Python specifications.
 Deployment and Community Adoption
 *********************************
 
-(...)
+Pythran is deployed through the official package manager, PyPI, and through the
+Conda package manager, *a defacto* standard for the scientific community. Its
+source are also available on GitHub. Due to the open-source nature of the
+project, it is difficult to gather usage statistics, but one can still note
+that:
+
+- The `conda-forge/pythran <https://anaconda.org/conda-forge/pythran>`_ channel cumulates more than 19,000 downloads;
+- The `PyPI website <https://pypistats.org/packages/pythran>`_ reports more than 5,000 downloads over the last month;
+- The `Github page <https://github.com/serge-sans-paille/pythran>`_ is starred by more than 1,000 users.
+
 
 Next steps
 **********
@@ -510,4 +519,6 @@ recognition of the potential of the Pythran compiler.
 Item 5
 ######
 
-(...)
+A whole section of the book *High Performance Python: Practical Performant
+Programming for Humans* published by O'Reilly in 2013 is dedicated to Pythran
+alongside major alternatives like Cython, Numba or PyPy.
