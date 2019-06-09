@@ -252,13 +252,24 @@ Contribution of candidate (Or team)
 
 Serge Guelton is the core developer of the Pythran project. As such, he contributed to all the aspects of the compiler:
 
-1. Original design of the compiler infrastructure, with an high-level compilation stage and a low-level compilation stage, and a focus on backward-compatibility with Python,
-2. Design and implementation of several compiler optimizations specific to the Python language, including inter-procedural ones
-3. Efficient implementation of a large part of the Numpy API in C++, combined with data structure that captures the complexity of Numpy's multi-dimensional arrays
-4. Packaging and diffusion of the Pythran compiler through academic conference, engineering conference and blog posts.
-5. Continuous testing of API and performance regression (see https://serge-sans-paille.github.io/pythran-asv/)
+1. Original design of the compiler infrastructure, with an high-level
+   compilation stage and a low-level compilation stage, and a focus on
+   backward-compatibility with Python,
 
-TODO: Pierre Augier
+2. Design and implementation of several compiler optimizations specific to the
+   Python language, including inter-procedural ones
+
+3. Efficient implementation of a large part of the Numpy API in C++, combined
+   with data structure that captures the complexity of Numpy's
+   multi-dimensional arrays
+
+4. Packaging and diffusion of the Pythran compiler through academic conference,
+   engineering conference and blog posts.
+
+5. Continuous testing of API and performance regression (see
+   https://serge-sans-paille.github.io/pythran-asv/)
+
+.. TODO: Pierre Augier
 
 Originality and difficulty
 **************************
@@ -391,7 +402,16 @@ Python specifications.
 Deployment and Community Adoption
 *********************************
 
-(...)
+Pythran is deployed through the official package manager, PyPI, and through the
+Conda package manager, *a defacto* standard for the scientific community. Its
+source are also available on GitHub. Due to the open-source nature of the
+project, it is difficult to gather usage statistics, but one can still note
+that:
+
+- The `conda-forge/pythran <https://anaconda.org/conda-forge/pythran>`_ channel cumulates more than 19,000 downloads;
+- The `PyPI website <https://pypistats.org/packages/pythran>`_ reports more than 5,000 downloads over the last month;
+- The `Github page <https://github.com/serge-sans-paille/pythran>`_ is starred by more than 1,000 users.
+
 
 Next steps
 **********
@@ -484,4 +504,6 @@ recognition of the potential of the Pythran compiler.
 Item 5
 ######
 
-(...)
+A whole section of the book *High Performance Python: Practical Performant
+Programming for Humans* published by O'Reilly in 2013 is dedicated to Pythran
+alongside major alternatives like Cython, Numba or PyPy.
