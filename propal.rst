@@ -7,9 +7,7 @@ Pythran
 - Guelton Serge
 - Augier Pierre
 
-[Organization]
-
-Pythran Open Source Community
+*Organization*: Pythran Open Source Community
 
 .. je ne sais pas quoi mettre ici, CNRS ? Ou alors on joue la carte de
    l’OpenSource et on met un truc genre « Pythran Open Source Community »
