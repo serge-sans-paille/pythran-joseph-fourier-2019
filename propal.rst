@@ -96,7 +96,7 @@ FluidDyn is mainly a set of Python packages forming a framework to study fluid
 dynamics with different methods, in particular laboratory experiments (package
 fluidlab), simulations (packages fluidfft, fluidsim and fluidfoam) and data
 processing (package fluidimage). Python and its scientific ecosystem is a great
-advantage for a project like FluidDyn, however, one needs good tools to easily
+advantage for a project like FluidDyn. However, one needs good tools to easily
 accelerate Python / Numpy code. Pythran produces very efficient binaries
 without the need to complicate the code and therefore to compromise simplicity,
 readability and portability. Therefore, Pythran has become the main Python /
@@ -219,10 +219,11 @@ programs, and takes advantage of multi-cores and SIMD instruction units.
 Pythran compilation involves three steps:
 
 1. Optimization of high-level constructs in the Python / Numpy code,
-2. Transpilation to optimized C++ code that does not depend on a Python interpreter
+2. Transpilation to optimized C++ code that does not depend on a Python interpreter,
 3. Compilation of the C++ code.
 
-As a result, the resulting Python extensions are usually very efficient, i.e. as fast as optimized C++ or Fortran.
+As a result, the resulting Python extensions are usually very efficient, i.e.
+as fast as optimized C++ or Fortran.
 
 Since Pythran extensions do not use the Python interpreter, they do not suffer
 from issues related to the Python Global Interpreter Lock (GIL) for parallel
@@ -250,15 +251,37 @@ functions or methods of classes) just by adding few lines of Python.
 Contribution of candidate (Or team)
 ***********************************
 
-Serge Guelton is the core developer of the Pythran project. As such, he contributed to all the aspects of the compiler:
+Serge Guelton is the core developer of the Pythran project. As such, he
+contributed to all the aspects of the compiler:
 
-1. Original design of the compiler infrastructure, with an high-level compilation stage and a low-level compilation stage, and a focus on backward-compatibility with Python,
-2. Design and implementation of several compiler optimizations specific to the Python language, including inter-procedural ones
-3. Efficient implementation of a large part of the Numpy API in C++, combined with data structure that captures the complexity of Numpy's multi-dimensional arrays
-4. Packaging and diffusion of the Pythran compiler through academic conference, engineering conference and blog posts.
-5. Continuous testing of API and performance regression (see https://serge-sans-paille.github.io/pythran-asv/)
+1. Original design of the compiler infrastructure, with an high-level
+   compilation stage and a low-level compilation stage, and a focus on
+   backward-compatibility with Python,
 
-TODO: Pierre Augier
+2. Design and implementation of several compiler optimizations specific to the
+   Python language, including inter-procedural ones
+
+3. Efficient implementation of a large part of the Numpy API in C++, combined
+   with data structure that captures the complexity of Numpy's multi-dimensional
+   arrays
+
+4. Packaging and diffusion of the Pythran compiler through academic conference,
+   engineering conference and blog posts.
+
+5. Continuous testing of API and performance regression (see
+   https://serge-sans-paille.github.io/pythran-asv/)
+
+As the creator of the FluidDyn project and a participant to the scientific
+Python community, Pierre Augier acts to increase the number of scientific
+developers who use Pythran. FluidDyn packages being used in regional and
+national clusters, Pythran has been tested and used in production in different
+computing environments. Pierre Augier and other developers of the FluidDyn
+projects (in particular Ashwin Vishnu and Cyrille Bonamy) contributed to
+Pythran through numerous bug reports and few code contributions. It is one of
+the strengths of Pythran to be so open to the feedback and the contributions of
+users, who are not specialists in compiler development and bring another point
+of view. Pierre Augier launched the development of Transonic from the same user
+perspective.
 
 Originality and difficulty
 **************************
@@ -272,7 +295,7 @@ these kernels in compiled languages (C, Fortran, C++), sometimes through the
 use of Cython. Python is mainly used in the scientific community as a very nice
 glue language.
 
-Due to its high level of dynamisms and introspection, it is notoriously
+Due to its high level of dynamism and introspection, it is notoriously
 difficult to compile full Python code. Pypy, the alternative and faster
 interpreter is not able to accelerate Python code using extensions consuming
 the CPython C API, so it cannot accelerate Numpy code.
@@ -308,9 +331,9 @@ However, writing efficient Cython code requires to master both Python, C, the
 actual Cython dialect, and part of the CPython C API. Note that Pythran can now
 be used from Cython to speed-up Numpy code. In most cases, similar performances
 can be achieved only with Pythran with much simpler, readable and elegant
-Python-only code. With Pythran, the code is therefore faster to write and easier to
-maintain. Moreover, more developers are able to work on it, which is very
-important for open-source scientific projects.
+Python-only code. With Pythran, the code is therefore faster to write and
+easier to maintain. Moreover, more developers are able to work on it, which is
+very important for open-source scientific projects.
 
 Numba is a Python package to perform just-in-time compilation of functions
 using a subset of Python / Numpy. Its main advantage is to target CPUs and
@@ -364,6 +387,9 @@ the project is done at several layers:
 
 3. From a user base point of view, Pythran bug tracker is very active and
    receives bug reports from academical and industrial users.
+
+The same attention to software quality has also been paid to develop Transonic,
+which has a similar testing infrastructure.
 
 Direct and potential impacts
 ****************************
@@ -477,7 +503,7 @@ Menéndez Hurtado, M Ekeberg, A Elofsson, Bioinformatics 33 (18), 2859-2866*.
 Item 4
 ######
 
-Pythran is an optional component of the `cython <https://cython.org/>`_
+Pythran is an optional component of the `Cython <https://cython.org/>`_
 compiler, the most widely used Python-to-C compiler. This is an important
 recognition of the potential of the Pythran compiler.
 
